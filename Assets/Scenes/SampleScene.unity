@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -226,6 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 769640992}
   - component: {fileID: 769640993}
+  - component: {fileID: 769640994}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -262,6 +263,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshFilter: {fileID: 1592819468}
   errorParam: 0.1
+  showVertices: 0
+  showWireFrame: 0
+--- !u!114 &769640994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769640991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c58db5bfa879f469372deb9f6aff28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  errorParam: 0.15
+  centerMinDistance: 0.1
+  minVerticesCountForShape: 1500
+  meshFilter: {fileID: 1592819468}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
