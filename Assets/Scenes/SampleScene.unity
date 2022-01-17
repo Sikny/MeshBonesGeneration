@@ -308,6 +308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1465837923}
+  - component: {fileID: 1465837924}
   m_Layer: 0
   m_Name: GenerateBoneFromMesh
   m_TagString: Untagged
@@ -329,3 +330,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1465837924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465837922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4737826b4e1ca44a3a61cb68fddb5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceMesh: {fileID: -3513376071601465590, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+  vertexSpherePrefab: {fileID: 5230938076832112004, guid: 806fb40aeba128248bcaf4ab4645dddb, type: 3}
+  baryCenter: {x: 0, y: 0, z: 0}
+  outBoneVector: {x: 0, y: 0, z: 0}
