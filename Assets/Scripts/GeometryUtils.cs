@@ -18,6 +18,7 @@ public static class GeometryUtils
 
     public static float Covariance(float[] v1, float[] v2)
     {
+        // moyenne(xy) - moyenne(x)*moyenne(y)
         return v1.Zip(v2, (a, b) => a * b).Sum() / v1.Length - v1.Mean() * v2.Mean();
     }
     
@@ -32,6 +33,7 @@ public static class GeometryUtils
         return values.Sum() / values.Length;
     }
 
+    //Vecteur propre
     public static Vector3 GetEigenVector(this float[][] matrix, int iterations)
     {
         // 1 - vecteur initial v0 dont la plus grande composante est 1
@@ -74,5 +76,10 @@ public static class GeometryUtils
             matrix[1][0] * vector.x + matrix[1][1] * vector.y + matrix[1][2] * vector.z,
             matrix[2][0] * vector.x + matrix[2][1] * vector.y + matrix[2][2] * vector.z
         );
+    }
+
+    public static Vector3 Project(this Vector3 point, Vector3 vector)
+    {
+        return Vector3.Dot(point, vector)/vector.sqrMagnitude * vector;
     }
 }

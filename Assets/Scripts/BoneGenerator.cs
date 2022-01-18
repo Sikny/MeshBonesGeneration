@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
@@ -8,6 +9,9 @@ public class BoneGenerator : MonoBehaviour
     public GameObject vertexSpherePrefab;
     public Vector3 baryCenter;
     public Vector3 outBoneVector;
+
+
+    public List<Vector3> projectedPoints = new List<Vector3>();
 
     private void Start()
     {
@@ -41,9 +45,32 @@ public class BoneGenerator : MonoBehaviour
         
         // 4 - algorithme de recherche de valeur propre dominante de M et de son vecteur propre v associé
         var eigenVec = covarianceM.GetEigenVector(100);
-        outBoneVector = eigenVec;
+        //outBoneVector = eigenVec;
 
-        // 5
+        // 5 - Projeter les points sur le vecteur propre
+        Vector3 max, min;
+        foreach(var point in vertices){
+            projectedPoints.Add(point.Project(eigenVec));
+        }
+        max = projectedPoints[0];
+        min = projectedPoints[0];
+        foreach(var point in projectedPoints)
+        {
+            max = Vector3.Max(max, point);
+            min = Vector3.Min(min, point);
+        }
+        Debug.Log("Max = " + max + ", min : " + min);
+
+        // 6 - Repositionner chaque partie du mesh ainsi que chaque composante principale
+        max = max + og;
+        min = min + og;
+        for (int i = vertexCount - 1; i >= 0; i--)
+        {
+            vertices[i] += og;
+        }
+
+        Instantiate(vertexSpherePrefab, max, Quaternion.identity);
+        Instantiate(vertexSpherePrefab, min, Quaternion.identity);
     }
 
     private void OnDrawGizmos()
