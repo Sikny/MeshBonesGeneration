@@ -18,7 +18,7 @@ public class BoneGenerator : MonoBehaviour
 
     public List<Vector3> projectedPoints = new List<Vector3>();
 
-    private void Start()
+    public void Init()
     {
         GenerateBone();
 
@@ -92,14 +92,11 @@ public class BoneGenerator : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (sourceMesh == null) return;
         Gizmos.color = Color.green;
-        for (int i = sourceMesh.vertices.Length - 1; i >= 0; i--)
-        {
-            Gizmos.DrawLine(outBoneVectorMin, outBoneVectorMax);
-        }
+        
+        Gizmos.DrawLine(outBoneVectorMin, outBoneVectorMax);
 
-        Handles.color = Color.magenta;
-        Handles.DrawPolyLine(projectedPoints.Select(point => point + baryCenter).ToArray());
+        /*Handles.color = Color.magenta;
+        Handles.DrawPolyLine(projectedPoints.Select(point => point + baryCenter).ToArray());*/
     }
 }
