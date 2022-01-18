@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df4737826b4e1ca44a3a61cb68fddb5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sourceMesh: {fileID: -2399856810110442892, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+  sourceMesh: {fileID: 3103064732407764749, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
   vertexSpherePrefab: {fileID: 5230938076832112004, guid: 806fb40aeba128248bcaf4ab4645dddb, type: 3}
   minMaxPrefab: {fileID: 5230938076832112004, guid: a60020b009f4e814d9d11d9ffa5653d4, type: 3}
   baryCenter: {x: 0, y: 0, z: 0}
@@ -387,10 +387,10 @@ MonoBehaviour:
   rForeArm: {fileID: 3026669202233841341, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
   rHand: {fileID: -3318744083140832420, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
   lUpperLeg: {fileID: 2606149428796137939, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
-  lForeLeg: {fileID: 3103064732407764749, guid: 0b2aecc16f953514ead70389c8c334ce, type: 3}
+  lForeLeg: {fileID: 3103064732407764749, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
   lFoot: {fileID: 4912470471621919257, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
   rUpperLeg: {fileID: 8563395506533637431, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
-  rForeLeg: {fileID: 2963244659335675203, guid: 0b2aecc16f953514ead70389c8c334ce, type: 3}
+  rForeLeg: {fileID: 2963244659335675203, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
   rFoot: {fileID: 5481670689821487056, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
   vertexSpherePrefab: {fileID: 5230938076832112004, guid: 806fb40aeba128248bcaf4ab4645dddb, type: 3}
   minMaxPrefab: {fileID: 5230938076832112004, guid: a60020b009f4e814d9d11d9ffa5653d4, type: 3}
