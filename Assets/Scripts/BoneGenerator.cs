@@ -74,6 +74,7 @@ public class BoneGenerator : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (sourceMesh == null) return;
         Gizmos.color = Color.green;
         for (int i = sourceMesh.vertices.Length - 1; i >= 0; i--)
         {
