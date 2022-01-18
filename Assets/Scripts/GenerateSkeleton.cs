@@ -20,6 +20,10 @@ public class GenerateSkeleton : MonoBehaviour
     private List<Mesh> _bones;
 
     [SerializeField] private SerializableDictionary<BodyPartType, BoneGenerator> generatedBones;
+    public float epsilon;
+    public float minDistance;
+
+    
 
     private void Start()
     {
@@ -38,6 +42,88 @@ public class GenerateSkeleton : MonoBehaviour
         }
 
         ParentBones();
+    }
+
+    private void Join(GameObject mainParent)
+    {
+        int nbChild = mainParent.transform.childCount;
+        int index = 0;
+        Transform currentParent = mainParent.transform;
+        Transform currentChild = mainParent.transform.GetChild(0);
+
+        while(index < nbChild)
+        {
+            BoneGenerator parentBone = currentParent.GetComponent<BoneGenerator>();
+            BoneGenerator childBone = currentChild.GetComponent<BoneGenerator>();
+
+            float distance0 = Vector3.Distance(parentBone.outBoneVectorMax,childBone.outBoneVectorMax);
+            float distance1 = Vector3.Distance(parentBone.outBoneVectorMax,childBone.outBoneVectorMin);
+            float distance2 = Vector3.Distance(parentBone.outBoneVectorMin,childBone.outBoneVectorMin);
+            float distance3 = Vector3.Distance(parentBone.outBoneVectorMin,childBone.outBoneVectorMax);
+
+            Vector3 parentPoint, childPoint;
+            parentPoint = Vector3.zero;
+            childPoint = Vector3.zero;
+
+            float distance;
+
+            distance = (distance0 < distance1) ? distance0 : distance1;
+            distance = (distance < distance2) ? distance : distance2;
+            distance = (distance < distance3) ? distance : distance3;
+
+            if(distance == distance0)
+            {
+                parentPoint = parentBone.outBoneVectorMax;
+                childPoint = childBone.outBoneVectorMax;
+            }
+            if(distance == distance1)
+            {
+                parentPoint = parentBone.outBoneVectorMax;
+                childPoint = childBone.outBoneVectorMin;
+            }
+            if(distance == distance2)
+            {
+                parentPoint = parentBone.outBoneVectorMin;
+                childPoint = childBone.outBoneVectorMin;
+            }
+            if(distance == distance3)
+            {
+                parentPoint = parentBone.outBoneVectorMin;
+                childPoint = childBone.outBoneVectorMax;
+            }
+
+            if(distance < minDistance)
+            {
+                if (distance < epsilon)
+                {
+                    Fusion(parentPoint, childPoint);
+                }
+                else CreateJoint(parentPoint, childPoint);
+            }
+
+            if(currentChild.childCount != 0)
+            {
+                currentParent = currentChild;
+                currentChild = currentChild.GetChild(0);
+            }
+            else
+            {
+                index += 1;
+                currentChild = mainParent.transform.GetChild(index);
+            }
+        }
+    }
+
+
+    private void Fusion(Vector3 parent, Vector3 child)
+    {
+        child = parent;
+    }
+
+    private void CreateJoint(Vector3 parent, Vector3 child)
+    {
+        Gizmos.DrawLine(parent, child);
+            
     }
 
     private void ParentBones()
