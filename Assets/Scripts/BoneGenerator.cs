@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
@@ -7,8 +9,10 @@ public class BoneGenerator : MonoBehaviour
 {
     public Mesh sourceMesh;
     public GameObject vertexSpherePrefab;
+    public GameObject minMaxPrefab;
     public Vector3 baryCenter;
-    public Vector3 outBoneVector;
+    public Vector3 outBoneVectorMax;
+    public Vector3 outBoneVectorMin;
 
 
     public List<Vector3> projectedPoints = new List<Vector3>();
@@ -45,32 +49,46 @@ public class BoneGenerator : MonoBehaviour
         
         // 4 - algorithme de recherche de valeur propre dominante de M et de son vecteur propre v associé
         var eigenVec = covarianceM.GetEigenVector(100);
-        //outBoneVector = eigenVec;
 
         // 5 - Projeter les points sur le vecteur propre
-        Vector3 max, min;
+        Vector3? max = null, min = null;
         foreach(var point in vertices){
-            projectedPoints.Add(point.Project(eigenVec));
-        }
-        max = projectedPoints[0];
-        min = projectedPoints[0];
-        foreach(var point in projectedPoints)
-        {
-            max = Vector3.Max(max, point);
-            min = Vector3.Min(min, point);
-        }
-        Debug.Log("Max = " + max + ", min : " + min);
+            max ??= point;
+            min ??= point;
+            Vector3 minToMax = min.Value - max.Value;
+            Vector3 projected = point.Project(eigenVec);
 
+            var projToMax = max.Value - projected;
+            var minToProj = projected - min.Value;
+            if (minToMax.magnitude < minToProj.magnitude
+                && (Vector3.Dot(minToMax, projToMax) >= 0 || minToMax == Vector3.zero))
+            {
+                max = projected;
+                minToMax = min.Value - max.Value;
+            }
+
+            if (minToMax.magnitude < projToMax.magnitude
+                && (Vector3.Dot(minToMax, minToProj) > 0 || minToMax == Vector3.zero))
+            {
+                min = projected;
+            }
+            
+            projectedPoints.Add(projected);
+        }
+        
         // 6 - Repositionner chaque partie du mesh ainsi que chaque composante principale
-        max = max + og;
-        min = min + og;
+        max += og;
+        min += og;
         for (int i = vertexCount - 1; i >= 0; i--)
         {
             vertices[i] += og;
         }
 
-        Instantiate(vertexSpherePrefab, max, Quaternion.identity);
-        Instantiate(vertexSpherePrefab, min, Quaternion.identity);
+        Instantiate(minMaxPrefab, max.Value, Quaternion.identity);
+        Instantiate(minMaxPrefab, min.Value, Quaternion.identity);
+
+        outBoneVectorMax = max.Value;
+        outBoneVectorMin = min.Value;
     }
 
     private void OnDrawGizmos()
@@ -79,7 +97,10 @@ public class BoneGenerator : MonoBehaviour
         Gizmos.color = Color.green;
         for (int i = sourceMesh.vertices.Length - 1; i >= 0; i--)
         {
-            Gizmos.DrawRay(baryCenter+outBoneVector/2, outBoneVector/2);
+            Gizmos.DrawLine(outBoneVectorMin, outBoneVectorMax);
         }
+
+        Handles.color = Color.magenta;
+        Handles.DrawPolyLine(projectedPoints.Select(point => point + baryCenter).ToArray());
     }
 }

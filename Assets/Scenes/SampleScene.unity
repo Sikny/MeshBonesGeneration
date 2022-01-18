@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -315,7 +315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1465837923
 Transform:
   m_ObjectHideFlags: 0
@@ -345,5 +345,61 @@ MonoBehaviour:
   sourceMesh: {fileID: -739993907785742148, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
   vertexSpherePrefab: {fileID: 5230938076832112004, guid: 806fb40aeba128248bcaf4ab4645dddb, type: 3}
   baryCenter: {x: 0, y: 0, z: 0}
-  outBoneVector: {x: 0, y: 0, z: 0}
+  outBoneVectorMax: {x: 0, y: 0, z: 0}
+  outBoneVectorMin: {x: 0, y: 0, z: 0}
   projectedPoints: []
+--- !u!1 &1979111483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1979111485}
+  - component: {fileID: 1979111484}
+  m_Layer: 0
+  m_Name: GenerateSkeleton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1979111484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979111483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d11d765f3f7c9e41846934eac00caad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  torso: {fileID: 6297267204642607378, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+  head: {fileID: -7070831255929112694, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+  lUpperArm: {fileID: -4945188700386862075, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+  lForeArm: {fileID: -2399856810110442892, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+  rUpperArm: {fileID: 354561340473560551, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+  rForeArm: {fileID: 3026669202233841341, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+  lUpperLeg: {fileID: 2606149428796137939, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+  lForeLeg: {fileID: 3103064732407764749, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+  rUpperLeg: {fileID: 8563395506533637431, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+  rForeLeg: {fileID: 2963244659335675203, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+  vertexSpherePrefab: {fileID: 5230938076832112004, guid: 806fb40aeba128248bcaf4ab4645dddb, type: 3}
+  minMaxPrefab: {fileID: 5230938076832112004, guid: a60020b009f4e814d9d11d9ffa5653d4, type: 3}
+--- !u!4 &1979111485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979111483}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
