@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5064627878156899076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5064627878156899074}
+  - component: {fileID: 5064627878156899077}
+  m_Layer: 0
+  m_Name: GenerateSkeleton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5064627878156899074
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5064627878156899076}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5064627878156899077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5064627878156899076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d11d765f3f7c9e41846934eac00caad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshes:
+    m_keys: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d000000
+    m_values:
+    - {fileID: 6297267204642607378, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+    - {fileID: -7070831255929112694, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+    - {fileID: -4945188700386862075, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+    - {fileID: 354561340473560551, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+    - {fileID: -2399856810110442892, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+    - {fileID: 3026669202233841341, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+    - {fileID: 9222175348383371259, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+    - {fileID: -3318744083140832420, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+    - {fileID: 2606149428796137939, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+    - {fileID: 8563395506533637431, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+    - {fileID: 3103064732407764749, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+    - {fileID: 2963244659335675203, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+    - {fileID: 4912470471621919257, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+    - {fileID: 5481670689821487056, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+  vertexSpherePrefab: {fileID: 5230938076832112004, guid: 806fb40aeba128248bcaf4ab4645dddb, type: 3}
+  minMaxPrefab: {fileID: 5230938076832112004, guid: a60020b009f4e814d9d11d9ffa5653d4, type: 3}
+  characterMaterial: {fileID: 2100000, guid: b89680a9ef7485c4da11d47678ce421b, type: 2}
+  generatedBones:
+    m_keys: 
+    m_values: []
+  epsilon: 0
+  minDistance: 0
