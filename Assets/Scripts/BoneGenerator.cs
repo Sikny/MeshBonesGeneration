@@ -48,32 +48,27 @@ public class BoneGenerator : MonoBehaviour
         var covarianceM = vertices.CovarianceMat();
         
         // 4 - algorithme de recherche de valeur propre dominante de M et de son vecteur propre v associé
-        var eigenVec = covarianceM.GetEigenVector(100);
+        var eigenVec = covarianceM.GetEigenVector(100).normalized;
 
         // 5 - Projeter les points sur le vecteur propre
-        Vector3? max = null, min = null;
+        Vector3 max = Vector3.zero, min = Vector3.zero;
         foreach(var point in vertices){
-            max ??= point;
-            min ??= point;
-            Vector3 minToMax = min.Value - max.Value;
-            Vector3 projected = point.Project(eigenVec);
+            var minToMax = min - max;
+            var projected = point.Project(eigenVec);
+            projectedPoints.Add(projected);
 
-            var projToMax = max.Value - projected;
-            var minToProj = projected - min.Value;
-            if (minToMax.magnitude < minToProj.magnitude
-                && (Vector3.Dot(minToMax, projToMax) >= 0 || minToMax == Vector3.zero))
+            var projToMax = max - projected;
+            var minToProj = projected - min;
+            if (Vector3.Dot(eigenVec, projToMax) >= 0 && minToMax.magnitude < minToProj.magnitude)
             {
                 max = projected;
-                minToMax = min.Value - max.Value;
+                minToMax = min - max;
             }
 
-            if (minToMax.magnitude < projToMax.magnitude
-                && (Vector3.Dot(minToMax, minToProj) > 0 || minToMax == Vector3.zero))
+            if (Vector3.Dot(eigenVec, minToProj) > 0 && minToMax.magnitude < projToMax.magnitude)
             {
                 min = projected;
             }
-            
-            projectedPoints.Add(projected);
         }
         
         // 6 - Repositionner chaque partie du mesh ainsi que chaque composante principale
@@ -84,11 +79,11 @@ public class BoneGenerator : MonoBehaviour
             vertices[i] += og;
         }
 
-        Instantiate(minMaxPrefab, max.Value, Quaternion.identity);
-        Instantiate(minMaxPrefab, min.Value, Quaternion.identity);
+        Instantiate(minMaxPrefab, max, Quaternion.identity);
+        Instantiate(minMaxPrefab, min, Quaternion.identity);
 
-        outBoneVectorMax = max.Value;
-        outBoneVectorMin = min.Value;
+        outBoneVectorMax = max;
+        outBoneVectorMin = min;
     }
 
     private void OnDrawGizmos()

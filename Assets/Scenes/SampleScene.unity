@@ -382,12 +382,16 @@ MonoBehaviour:
   head: {fileID: -7070831255929112694, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
   lUpperArm: {fileID: -4945188700386862075, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
   lForeArm: {fileID: -2399856810110442892, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+  lHand: {fileID: 9222175348383371259, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
   rUpperArm: {fileID: 354561340473560551, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
   rForeArm: {fileID: 3026669202233841341, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+  rHand: {fileID: -3318744083140832420, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
   lUpperLeg: {fileID: 2606149428796137939, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
-  lForeLeg: {fileID: 3103064732407764749, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+  lForeLeg: {fileID: 3103064732407764749, guid: 0b2aecc16f953514ead70389c8c334ce, type: 3}
+  lFoot: {fileID: 4912470471621919257, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
   rUpperLeg: {fileID: 8563395506533637431, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
-  rForeLeg: {fileID: 2963244659335675203, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
+  rForeLeg: {fileID: 2963244659335675203, guid: 0b2aecc16f953514ead70389c8c334ce, type: 3}
+  rFoot: {fileID: 5481670689821487056, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
   vertexSpherePrefab: {fileID: 5230938076832112004, guid: 806fb40aeba128248bcaf4ab4645dddb, type: 3}
   minMaxPrefab: {fileID: 5230938076832112004, guid: a60020b009f4e814d9d11d9ffa5653d4, type: 3}
 --- !u!4 &1979111485
