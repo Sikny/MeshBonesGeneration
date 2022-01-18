@@ -1,5 +1,6 @@
-using System;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 public class BoneGenerator : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class BoneGenerator : MonoBehaviour
         var eigenVec = covarianceM.GetEigenVector(100);
         outBoneVector = eigenVec;
 
-        // 5 - 
+        // 5
     }
 
     private void OnDrawGizmos()
@@ -51,7 +52,7 @@ public class BoneGenerator : MonoBehaviour
         Gizmos.color = Color.green;
         for (int i = sourceMesh.vertices.Length - 1; i >= 0; i--)
         {
-            Gizmos.DrawRay(baryCenter, outBoneVector/2);
+            Gizmos.DrawRay(baryCenter+outBoneVector/2, outBoneVector/2);
         }
     }
 }
