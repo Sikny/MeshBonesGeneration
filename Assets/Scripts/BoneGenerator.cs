@@ -13,6 +13,7 @@ public class BoneGenerator : MonoBehaviour
     public Vector3 baryCenter;
     public Vector3 outBoneVectorMax;
     public Vector3 outBoneVectorMin;
+    public Material material;
 
 
     public List<Vector3> projectedPoints = new List<Vector3>();
@@ -20,6 +21,9 @@ public class BoneGenerator : MonoBehaviour
     private void Start()
     {
         GenerateBone();
+
+        gameObject.AddComponent<MeshFilter>().sharedMesh = sourceMesh;
+        gameObject.AddComponent<MeshRenderer>().sharedMaterial = material;
     }
 
     [ContextMenu("Generate Bone")]
@@ -31,7 +35,7 @@ public class BoneGenerator : MonoBehaviour
         int vertexCount = vertices.Length;
         for (int i = vertexCount - 1; i >= 0; --i)
         {
-            Instantiate(vertexSpherePrefab, vertices[i], Quaternion.identity);
+            //Instantiate(vertexSpherePrefab, vertices[i], Quaternion.identity);
             g += vertices[i];
         }
         g /= vertexCount;   // barycentre

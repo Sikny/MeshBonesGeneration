@@ -348,6 +348,7 @@ MonoBehaviour:
   baryCenter: {x: 0, y: 0, z: 0}
   outBoneVectorMax: {x: 0, y: 0, z: 0}
   outBoneVectorMin: {x: 0, y: 0, z: 0}
+  material: {fileID: 0}
   projectedPoints: []
 --- !u!1 &1979111483
 GameObject:
@@ -394,6 +395,7 @@ MonoBehaviour:
   rFoot: {fileID: 5481670689821487056, guid: b98458f5c42bfe84691d6bc632378e91, type: 3}
   vertexSpherePrefab: {fileID: 5230938076832112004, guid: 806fb40aeba128248bcaf4ab4645dddb, type: 3}
   minMaxPrefab: {fileID: 5230938076832112004, guid: a60020b009f4e814d9d11d9ffa5653d4, type: 3}
+  characterMaterial: {fileID: 2100000, guid: b89680a9ef7485c4da11d47678ce421b, type: 2}
 --- !u!4 &1979111485
 Transform:
   m_ObjectHideFlags: 0

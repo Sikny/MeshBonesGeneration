@@ -20,11 +20,13 @@ public class GenerateSkeleton : MonoBehaviour
     public GameObject vertexSpherePrefab;
     public GameObject minMaxPrefab;
 
+    public Material characterMaterial;
+
     private Mesh[] _bones;
 
     private void OnValidate()
     {
-        _bones = new Mesh[]
+        _bones = new[]
         {
             torso, head, lUpperArm, lForeArm, rUpperArm, lForeArm, rUpperArm, rForeArm, rUpperLeg,
             rForeLeg, lUpperLeg, lForeLeg, rHand, lHand, lFoot, rFoot
@@ -40,6 +42,7 @@ public class GenerateSkeleton : MonoBehaviour
             boneGenerator.vertexSpherePrefab = vertexSpherePrefab;
             boneGenerator.minMaxPrefab = minMaxPrefab;
             boneGenerator.sourceMesh = bone;
+            boneGenerator.material = characterMaterial;
         }
     }
 }
