@@ -143,7 +143,7 @@ public class GenerateSkeleton : MonoBehaviour
         bone.outBoneVectorMin = child;
         bone.outBoneVectorMax = parent;
         boneT.SetParent(parentT);
-        //childT.transform.SetParent(boneT);
+        childT.SetParent(boneT);
     }
 
     private void ParentBones()
