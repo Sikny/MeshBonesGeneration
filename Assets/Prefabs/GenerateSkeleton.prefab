@@ -66,5 +66,6 @@ MonoBehaviour:
   generatedBones:
     m_keys: 
     m_values: []
-  epsilon: 0
-  minDistance: 0
+  epsilon: 0.069
+  minDistance: 1.43
+  parent: {fileID: 0}
