@@ -92,6 +92,7 @@ public class BoneGenerator : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if(Application.isPlaying) return;
         Gizmos.color = Color.green;
         
         Gizmos.DrawLine(outBoneVectorMin, outBoneVectorMax);
