@@ -99,4 +99,9 @@ public class BoneGenerator : MonoBehaviour
         /*Handles.color = Color.magenta;
         Handles.DrawPolyLine(projectedPoints.Select(point => point + baryCenter).ToArray());*/
     }
+
+    public void SwapMinMax()
+    {
+        (outBoneVectorMin, outBoneVectorMax) = (outBoneVectorMax, outBoneVectorMin);
+    }
 }

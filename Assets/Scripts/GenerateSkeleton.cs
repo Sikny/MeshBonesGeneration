@@ -46,6 +46,35 @@ public class GenerateSkeleton : MonoBehaviour
 
         ParentBones();
         Join(parent);
+
+        generatedBones[BodyPartType.Torso].SwapMinMax();
+        generatedBones[BodyPartType.Head].SwapMinMax();
+        generatedBones[BodyPartType.UpperArmR].SwapMinMax();
+        generatedBones[BodyPartType.ForeArmR].SwapMinMax();
+        generatedBones[BodyPartType.HandR].SwapMinMax();
+        generatedBones[BodyPartType.FootL].SwapMinMax();
+        generatedBones[BodyPartType.FootR].SwapMinMax();
+
+        foreach (var generatedBone in generatedBones)
+        {
+            MeshFilter meshFilter = generatedBone.Value.GetComponent<MeshFilter>();
+            MeshRenderer meshRenderer = generatedBone.Value.GetComponent<MeshRenderer>();
+
+            Vector3 pos = generatedBone.Value.transform.position;
+            GameObject child = new GameObject("mesh");
+            //child.transform.position = generatedBone.Value.transform.position;
+            generatedBone.Value.transform.position = generatedBone.Value.outBoneVectorMin;
+            child.transform.parent = generatedBone.Value.transform;
+            var childMF = child.AddComponent<MeshFilter>();
+            var childMR = child.AddComponent<MeshRenderer>();
+            childMF.sharedMesh = meshFilter.sharedMesh;
+            childMR.material = meshRenderer.material;
+            
+            Destroy(meshFilter);
+            Destroy(meshRenderer);
+
+            //child.transform.position = pos;
+        }
     }
 
     private void Join(GameObject mainParent)
