@@ -25,7 +25,7 @@ public class GenerateSkeleton : MonoBehaviour
 
     public GameObject parent;
 
-    private void Start()
+    public void Start()
     {
         generatedBones = new SerializableDictionary<BodyPartType, BoneGenerator>();
         _bones = new List<Mesh>();

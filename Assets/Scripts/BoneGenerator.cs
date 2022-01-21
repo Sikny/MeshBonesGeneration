@@ -82,10 +82,10 @@ public class BoneGenerator : MonoBehaviour
         {
             vertices[i] += og;
         }
-
+/*
         Instantiate(minMaxPrefab, max, Quaternion.identity);
         Instantiate(minMaxPrefab, min, Quaternion.identity);
-
+*/
         outBoneVectorMax = max;
         outBoneVectorMin = min;
     }
