@@ -10,7 +10,7 @@ public class SpawnSkeleton: Editor
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
-        if(GUILayout.Button("Générer le modèle et squelette"))
+        if(GUILayout.Button("GÃ©nÃ©rer le modÃ¨le et squelette"))
         {
             ((GenerateSkeleton)target).Start();
         }

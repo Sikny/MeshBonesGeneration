@@ -68,10 +68,18 @@ public class GenerateSkeleton : MonoBehaviour
             var childMF = child.AddComponent<MeshFilter>();
             var childMR = child.AddComponent<MeshRenderer>();
             childMF.sharedMesh = meshFilter.sharedMesh;
-            childMR.material = meshRenderer.material;
-            
-            Destroy(meshFilter);
-            Destroy(meshRenderer);
+            childMR.sharedMaterial = meshRenderer.sharedMaterial;
+
+            if (Application.isPlaying)
+            {
+                Destroy(meshFilter);
+                Destroy(meshRenderer);
+            }
+            else
+            {
+                DestroyImmediate(meshFilter);
+                DestroyImmediate(meshRenderer);
+            }
 
             //child.transform.position = pos;
         }
