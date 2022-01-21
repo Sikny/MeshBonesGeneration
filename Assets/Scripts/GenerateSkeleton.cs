@@ -55,6 +55,8 @@ public class GenerateSkeleton : MonoBehaviour
         Transform currentParent = mainParent.transform;
         Transform currentChild = mainParent.transform.GetChild(0);
 
+        Dictionary<Transform, Transform> toParent = new Dictionary<Transform, Transform>();
+
         while(index < nbChild)
         {
             BoneGenerator parentBone = currentParent.GetComponent<BoneGenerator>();
@@ -76,6 +78,8 @@ public class GenerateSkeleton : MonoBehaviour
             distance = (distance < distance3) ? distance : distance3;
 
             //Debug.Log(distance0 + "," + distance1+ ","+distance2+ "," + distance3);
+
+            BoneGenerator joint = null;
 
             if(distance < minDistance)
             {
@@ -102,19 +106,28 @@ public class GenerateSkeleton : MonoBehaviour
                     string jointName = parentBone.gameObject.name + "To" + childBone.gameObject.name;
                     if (distance == distance0)
                     {
-                        CreateJoint(childBone.outBoneVectorMax, parentBone.outBoneVectorMax, parentBone.transform, childBone.transform, jointName);
+                        joint = CreateJoint(childBone.outBoneVectorMax, parentBone.outBoneVectorMax, parentBone.transform, childBone.transform, jointName);
+                        
+                        toParent[joint.transform] = parentBone.transform;
+                        toParent[childBone.transform] = joint.transform;
                     }
                     if (distance == distance1)
                     {
-                        CreateJoint(childBone.outBoneVectorMin, parentBone.outBoneVectorMax, parentBone.transform, childBone.transform, jointName);
+                        joint = CreateJoint(childBone.outBoneVectorMin, parentBone.outBoneVectorMax, parentBone.transform, childBone.transform, jointName);
+                        toParent[joint.transform] = parentBone.transform;
+                        toParent[childBone.transform] = joint.transform;
                     }
                     if (distance == distance2)
                     {
-                        CreateJoint(childBone.outBoneVectorMin, parentBone.outBoneVectorMin, parentBone.transform, childBone.transform, jointName);
+                        joint = CreateJoint(childBone.outBoneVectorMin, parentBone.outBoneVectorMin, parentBone.transform, childBone.transform, jointName);
+                        toParent[joint.transform] = parentBone.transform;
+                        toParent[childBone.transform] = joint.transform;
                     }
                     if (distance == distance3)
                     {
-                        CreateJoint(childBone.outBoneVectorMax, parentBone.outBoneVectorMin, parentBone.transform, childBone.transform, jointName);
+                        joint = CreateJoint(childBone.outBoneVectorMax, parentBone.outBoneVectorMin, parentBone.transform, childBone.transform, jointName);
+                        toParent[joint.transform] = parentBone.transform;
+                        toParent[childBone.transform] = joint.transform;
                     }
                 }
             }
@@ -134,16 +147,22 @@ public class GenerateSkeleton : MonoBehaviour
                 }
             }
         }
+
+        foreach (var childParent in toParent)
+        {
+            childParent.Key.SetParent(childParent.Value);
+        }
     }
 
-    private void CreateJoint(Vector3 child, Vector3 parent, Transform parentT, Transform childT, string jointName)
+    private BoneGenerator CreateJoint(Vector3 child, Vector3 parent, Transform parentT, Transform childT, string jointName)
     {
         BoneGenerator bone = new GameObject(jointName).AddComponent<BoneGenerator>();
         var boneT = bone.transform;
         bone.outBoneVectorMin = child;
         bone.outBoneVectorMax = parent;
-        boneT.SetParent(parentT);
+        //boneT.SetParent(parentT);
         //childT.SetParent(boneT);
+        return bone;
     }
 
     private void ParentBones()
